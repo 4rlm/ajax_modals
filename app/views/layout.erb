@@ -1,3 +1,5 @@
+<!-- https://codyhouse.co/gem/loginsignup-modal-window/ -->
+
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
@@ -7,6 +9,15 @@
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 
   <!-- MODIFIED -->
+  <!-- CSS -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+  <link rel="stylesheet" href="../../../assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../assets/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../../assets/css/form-elements.css">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  
+
   <link rel="stylesheet" href="../../../assets/modals/css/reset.css"> <!-- CSS reset -->
   <link rel="stylesheet" href="../../../assets/modals/css/style.css"> <!-- Gem style -->
   <script src="../../../assets/modals/js/modernizr.js"></script> <!-- Modernizr -->
@@ -21,8 +32,19 @@
 		<nav class="main-nav">
 			<ul>
 				<!-- inser more links here -->
+        <li><a href='/accounts'>Accounts</a></li>
+        <li><a href='/contacts'>Contacts</a></li>
+        <li><a href='/users/index'>Users</a></li>
+
+        <li><a href="#/users/<%#= @user.id %>"><%#= @user.username %> Profile</a></li>
+        <li><a href='/users/logout'>Log Out</a></li>
+
+        <li><a class="cd-signin" href="#0">T-Log Out</a></li>
+        <li><a class="cd-signup" href="#1">T-Sign up</a></li>
+
+
 				<li><a class="cd-signin" href="#0">Sign in</a></li>
-				<li><a class="cd-signup" href="#0">Sign up</a></li>
+				<li><a class="cd-signup" href="#1">Sign up</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -35,16 +57,17 @@
 			</ul>
 
 			<div id="cd-login"> <!-- log in form -->
-				<form class="cd-form">
+				<!-- <form class="cd-form"> -->
+        <form class="cd-form" action="/users/login" method="post">
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signin-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+						<input class="full-width has-padding has-border" id="signin-email" type="text" name="user[email]" placeholder="E-mail">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signin-password">Password</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+						<input class="full-width has-padding has-border" id="signin-password" type="text" name="user[password]" placeholder="Password">
 						<a href="#0" class="hide-password">Hide</a>
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -55,7 +78,7 @@
 					</p>
 
 					<p class="fieldset">
-						<input class="full-width" type="submit" value="Login">
+						<input class="full-width" type="submit" name="commit" value="Login">
 					</p>
 				</form>
 
@@ -64,22 +87,22 @@
 			</div> <!-- cd-login -->
 
 			<div id="cd-signup"> <!-- sign up form -->
-				<form class="cd-form">
+				<form class="cd-form" action="/users/register" method="post">
 					<p class="fieldset">
 						<label class="image-replace cd-username" for="signup-username">Username</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+						<input class="full-width has-padding has-border" id="signup-username" type="text" name="user[username]" placeholder="Username">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signup-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+						<input class="full-width has-padding has-border" id="signup-email" type="text" name="user[email]" placeholder="E-mail">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signup-password">Password</label>
-						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+						<input class="full-width has-padding has-border" id="signup-password" type="text"  name="user[password]" placeholder="Password">
 						<a href="#0" class="hide-password">Hide</a>
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -90,7 +113,7 @@
 					</p>
 
 					<p class="fieldset">
-						<input class="full-width has-padding" type="submit" value="Create account">
+						<input class="full-width has-padding" type="submit" name="commit" value="Create account">
 					</p>
 				</form>
 
@@ -117,6 +140,26 @@
 			<a href="#0" class="cd-close-form">Close</a>
 		</div> <!-- cd-user-modal-container -->
 	</div> <!-- cd-user-modal -->
+
+
+
+  <!-- SINATRA YIELD -->
+  <div class='container erb-wrapper text-center' id='main'>
+    <% @alert_msg.keys.each do |type| %>
+      <div class="alert <%= type %>" role="alert">
+        <%= @alert_msg[type] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer text-center">
+    <h4>Developed by The Austonites &copy 2017</h4>
+  </div>
+
+
 
 <!-- MODIFIED -->
 <script src="../../../assets/js/jquery-1.11.1.min.js"></script>
