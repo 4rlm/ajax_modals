@@ -1,0 +1,31 @@
+<div class="">
+
+  <div class="erb_header">
+    <h3>Contact Detail View</h3>
+  </div>
+
+  <table class="table table-bordered table-hover table-striped text-nowrap">
+    <tr>
+      <th class="w-small">ID</th>
+<th class="w-small">Name</th>
+<th class="w-small">Title</th>
+<th class="w-small">Email</th>
+<th class="w-small">Phone</th>
+<th class="w-small">Description</th>
+
+      <th class="w-med">Updated</th>
+    </tr>
+
+    <tr>
+      <td><%= @contact.id %></td>
+<td><%= @contact.name %></td>
+<td><%= @contact.title %></td>
+<td><%= @contact.email %></td>
+<td><%= @contact.phone %></td>
+<td><%= @contact.description %></td>
+
+      <td><%= @contact.updated_at.strftime('%x')%></td>
+    </tr>
+
+  </table>
+</div>

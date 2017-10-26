@@ -1,0 +1,42 @@
+<h3>View All Account</h3>
+
+<table class="table table-bordered table-hover table-striped text-nowrap">
+  <tr>
+    <th class="w-small">ID</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Website</th>
+<th>Description</th>
+<th>Website</th>
+
+    <th class="w-med">Updated</th>
+    <th colspan="3" class="w-med">Manage</th>
+  </tr>
+  <% @accounts.each do |account|%>
+  <tr>
+    <td class="w-small"><%= account.id%></td>
+<td><%= account.name %></td>
+<td><%= account.phone %></td>
+<td><%= account.address %></td>
+<td><%= account.website %></td>
+<td><%= account.description %></td>
+<td><%= account.website %></td>
+
+    <td><%= account.updated_at.strftime('%x')%></td>
+
+    <td><a href="/accounts/<%= account.id %>"><span class="glyphicon glyphicon-folder-open"></span></a></td>
+    <td><a href="/accounts/<%= account.id %>/edit"><span class="glyphicon glyphicon-edit"></span></a></td>
+
+    <td><%= erb :'accounts/_delete', layout: true, locals: { account: account }%></td>
+
+  </tr>
+  <% end %>
+</table>
+
+
+<div class="digg_pagination">
+  <%#= will_paginate @accounts, renderer: BootstrapPagination::Sinatra %>
+  <%#= will_paginate @accounts %>
+</div>
+
