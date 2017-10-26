@@ -1,87 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <head>
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ajax Modals</title>
+  <!-- MODIFIED -->
+  <link rel="stylesheet" href="../../../assets/modals/css/reset.css"> <!-- CSS reset -->
+  <link rel="stylesheet" href="../../../assets/modals/css/style.css"> <!-- Gem style -->
+  <script src="../../../assets/modals/js/modernizr.js"></script> <!-- Modernizr -->
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="../../../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../../assets/css/form-elements.css">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
+	<title>Log In &amp; Sign Up Form</title>
+</head>
+<body>
+	<header role="banner">
+    <div id="cd-logo"><a href="#0"><img src="../../../assets/modals/img/cd-logo.svg" alt="Logo"></a></div>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif] -->
 
-  </head>
+		<nav class="main-nav">
+			<ul>
+				<!-- inser more links here -->
+				<li><a class="cd-signin" href="#0">Sign in</a></li>
+				<li><a class="cd-signup" href="#0">Sign up</a></li>
+			</ul>
+		</nav>
+	</header>
 
-  <body>
-    <div>
-    <!-- <nav class="navbar navbar-fixed-top"> -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+			<ul class="cd-switcher">
+				<li><a href="#0">Sign in</a></li>
+				<li><a href="#0">New account</a></li>
+			</ul>
 
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-list-alt"></span> Ajax Modals</a>
-          </div>
+			<div id="cd-login"> <!-- log in form -->
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signin-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-            <li><a href='/accounts'>Accounts</a></li>
-            <li><a href='/contacts'>Contacts</a></li>
-            <li><a href='/users/index'>Users</a></li>
-            <li><a href='/users/register'>Register</a></li>
-            <li><a href='/users/login'>Login</a></li>
-            <li><a href="#/users/<%#= @user.id %>"><%#= @user.username %> Profile</a></li>
-            <li><a href='/users/logout'>Log Out</a></li>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-    </div>
+					<p class="fieldset">
+						<label class="image-replace cd-password" for="signin-password">Password</label>
+						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+						<a href="#0" class="hide-password">Hide</a>
+						<span class="cd-error-message">Error message here!</span>
+					</p>
 
-    <div class='container erb-wrapper text-center' id='main'>
+					<p class="fieldset">
+						<input type="checkbox" id="remember-me" checked>
+						<label for="remember-me">Remember me</label>
+					</p>
 
-      <% @alert_msg.keys.each do |type| %>
-        <div class="alert <%= type %>" role="alert">
-          <%= @alert_msg[type] %>
-        </div>
-      <% end %>
+					<p class="fieldset">
+						<input class="full-width" type="submit" value="Login">
+					</p>
+				</form>
 
-      <%= yield %>
-    </div>
+				<p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+				<!-- <a href="#0" class="cd-close-form">Close</a> -->
+			</div> <!-- cd-login -->
 
-    <!-- Footer -->
-    <div class="footer text-center">
-      <h4>Developed by The Austonites &copy 2017</h4>
-    </div>
+			<div id="cd-signup"> <!-- sign up form -->
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-username" for="signup-username">Username</label>
+						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
 
-    <!-- Javascript -->
-    <script src="../../../assets/js/jquery-1.11.1.min.js"></script>
-    <script src="../../../assets/bootstrap/js/bootstrap.min.js"></script>
-    <!-- <script src="../../../assets/js/jquery.backstretch.min.js"></script> -->
-    <!-- <script src="../../../assets/js/scripts.js"></script> -->
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signup-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
 
-    <!--[if lt IE 10]>
-        <script src="assets/js/placeholder.js"></script>
-    <![endif]-->
+					<p class="fieldset">
+						<label class="image-replace cd-password" for="signup-password">Password</label>
+						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+						<a href="#0" class="hide-password">Hide</a>
+						<span class="cd-error-message">Error message here!</span>
+					</p>
 
-  </body>
+					<p class="fieldset">
+						<input type="checkbox" id="accept-terms">
+						<label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+					</p>
 
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Create account">
+					</p>
+				</form>
+
+				<!-- <a href="#0" class="cd-close-form">Close</a> -->
+			</div> <!-- cd-signup -->
+
+			<div id="cd-reset-password"> <!-- reset password form -->
+				<p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="reset-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Reset password">
+					</p>
+				</form>
+
+				<p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+			</div> <!-- cd-reset-password -->
+			<a href="#0" class="cd-close-form">Close</a>
+		</div> <!-- cd-user-modal-container -->
+	</div> <!-- cd-user-modal -->
+
+<!-- MODIFIED -->
+<script src="../../../assets/js/jquery-1.11.1.min.js"></script>
+<script src="../../../assets/modals/js/main.js"></script> <!-- Modernizr -->
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+
+</body>
 </html>
